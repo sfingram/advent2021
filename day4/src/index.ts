@@ -4,53 +4,44 @@ const raw_input = await readFile(process.argv[2], "utf8");
 
 type Move = number;
 class Bingo {
-  protected _board: number[][] = [];
+  protected _board_size = 0;
   protected _move_index: { [key: number]: [number, number] } = {};
   protected _rowCounts: { [key: number]: number } = {};
   protected _columnCounts: { [key: number]: number } = {};
-  protected _diagonalCounts: { [key: number]: number } = {};
   protected _lastMove: Move = 0;
   protected _pastMoves: { [key: number]: boolean } = {};
 
   constructor(input: string[]) {
+    const board: number[][] = [];
     input.forEach((line) => {
       const row = line.trim().replaceAll("  ", " ").split(" ").map(Number);
-      this._board.push(row);
+      board.push(row);
     });
-    this._board.forEach((row, rowIndex) => {
+    board.forEach((row, rowIndex) => {
       row.forEach((value, columnIndex) => {
         this._move_index[value] = [rowIndex, columnIndex];
       });
     });
+    this._board_size = board.length;
   }
 
-  print() {
-    this._board.forEach((row) => {
-      row.forEach((col) => {
-        process.stdout.write(`${col} `);
-      });
-      process.stdout.write("\n");
-    });
-  }
   checkWin(): boolean {
     const rowCounts = Object.values(this._rowCounts);
     const columnCounts = Object.values(this._columnCounts);
 
     return (
-      rowCounts.includes(this._board.length) ||
-      columnCounts.includes(this._board.length)
+      rowCounts.includes(this._board_size) ||
+      columnCounts.includes(this._board_size)
     );
   }
 
   calculateWin(): number {
     if (this.checkWin()) {
       let unmarked_sum = 0;
-      this._board.forEach((row) => {
-        row.forEach((value) => {
-          if (!(value in this._pastMoves)) {
-            unmarked_sum += value;
-          }
-        });
+      Object.keys(this._move_index).forEach((key) => {
+        if (!(key in this._pastMoves)) {
+          unmarked_sum += Number(key);
+        }
       });
 
       return unmarked_sum * this._lastMove;
