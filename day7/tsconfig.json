@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "skipLibCheck": true,
+        "moduleResolution": "node",
+        "lib": [
+            "esnext"
+        ],
+        "module": "esnext",
+        "outDir": "dist",
+        "sourceMap": true,
+        "strict": true,
+        "target": "esnext"
+    },
+    "include": [
+        "src"
+    ]
+}
