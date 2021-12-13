@@ -1,0 +1,24 @@
+{
+  "name": "day1",
+  "version": "1.0.0",
+  "description": "Day 1 of Advent of Code 2021",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --ext .js,.ts src",
+    "prettier-format": "prettier src/**/*.ts --write"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.11.11",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
+    "eslint": "^8.3.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.5.0",
+    "typescript": "^4.5.2"
+  },
+  "type": "module"
+}

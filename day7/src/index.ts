@@ -8,7 +8,7 @@ const ones = tf.ones([crabs.length, 1]);
 const y = tf.scalar(0).variable();
 const f = (x: tf.Tensor) => x.sub(y.mul(ones).transpose()).abs();
 
-const optimizer_1 = tf.train.sgd(0.1);
+const optimizer_1 = tf.train.sgd(0.01);
 const loss = (x: tf.Tensor): tf.Scalar => f(x).sum();
 for (let i = 0; i < 100; i++) {
   optimizer_1.minimize(() => loss(crab_v));
