@@ -1,4 +1,3 @@
-import { open } from "fs";
 import { readFile } from "fs/promises";
 
 const raw_input = await readFile(process.argv[2], "utf8");
